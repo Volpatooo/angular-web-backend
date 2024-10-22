@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -8,7 +9,7 @@ import { RippleModule } from 'primeng/ripple';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
-  selector: 'app-componentes',
+  selector: 'app-login',
   standalone: true,
   imports: [InputTextModule,
      FormsModule,
@@ -17,17 +18,22 @@ import { ToastModule } from 'primeng/toast';
       RippleModule,
     PasswordModule],
   providers: [MessageService],
-  templateUrl: './componentes.component.html',
-  styleUrl: './componentes.component.css'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
-export class ComponentesComponent {
+export class LoginComponent {
   login: string = ""; // encma de value que agora e login eu coloco o mouse encima e aperto f2 e muda em todos os lugares que precisa
   senha: string = "";
-  constructor(private messageService: MessageService) {}
+  constructor(
+    // Necesario para poder apresentar mensagem de feedback para o usuario
+    private messageService: MessageService,
+    // necessario para poder redirecionar para outra rota
+    private router: Router,
+  ) {}
 
   enviar(){
-    if (this.login == "admin" && this.senha == "batatinha") {
-      
+    if (this.login == "." && this.senha == ",") {
+      this.router.navigate(["/home"]) // quando completarmos a senha vai ser redirecionado para o home
     } else {
 
      this.messageService.add({ severity: 'error', summary: 'Erro 404#', detail: 'Login ou senha invalidos!' }); // o value e oq definimos no html do component no input
