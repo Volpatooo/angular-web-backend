@@ -16,3 +16,8 @@ ng generate component componentes
 sempre quando for importar uma coisa do primeng tem que importar depois usar o html
 
 app.routes.ts vai as rotas (path) igual as urls
+
+pesquisando primeflex no google achamos como deixar nossas divs botoes etc do jeito que queremos
+
+ng g c + nome cria u arquivos com css html ts
+
