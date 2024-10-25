@@ -13,7 +13,11 @@ interface Categoria{
 @Component({
   selector: 'app-lista-categoria',
   standalone: true,
-  imports: [TableModule, ButtonModule, DialogModule, InputTextModule, FormsModule],
+  imports: [TableModule,
+    ButtonModule,
+    DialogModule,
+    InputTextModule,
+    FormsModule],
   templateUrl: './lista-categoria.component.html',
   styleUrl: './lista-categoria.component.css'
 })
