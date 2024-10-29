@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "steam_fake_db": {
+    "steam-fake-ng": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/steam_fake_db",
+            "outputPath": "dist/steam-fake-ng",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -29,9 +29,9 @@
             "styles": [
               "node_modules/primeng/resources/themes/lara-dark-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
-              "src/styles.css",
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeflex/primeflex.css"
+              "node_modules/primeflex/primeflex.css",
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "steam_fake_db:build:production"
+              "buildTarget": "steam-fake-ng:build:production"
             },
             "development": {
-              "buildTarget": "steam_fake_db:build:development"
+              "buildTarget": "steam-fake-ng:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,6 +98,6 @@
     }
   },
   "cli": {
-    "analytics": "2363a01a-fd46-41a7-afdd-140ec46233ac"
+    "analytics": "cff51362-c78e-466b-a680-678d514d7228"
   }
 }

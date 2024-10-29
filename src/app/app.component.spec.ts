@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'steam_fake_db' title`, () => {
+  it(`should have the 'steam-fake-ng' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('steam_fake_db');
+    expect(app.title).toEqual('steam-fake-ng');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, steam_fake_db');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, steam-fake-ng');
   });
 });

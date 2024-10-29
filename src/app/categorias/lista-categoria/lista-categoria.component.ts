@@ -13,24 +13,20 @@ interface Categoria{
 @Component({
   selector: 'app-lista-categoria',
   standalone: true,
-  imports: [TableModule,
-    ButtonModule,
-    DialogModule,
-    InputTextModule,
-    FormsModule],
+  imports: [TableModule, ButtonModule, DialogModule, InputTextModule, FormsModule],
   templateUrl: './lista-categoria.component.html',
   styleUrl: './lista-categoria.component.css'
 })
 export class ListaCategoriaComponent {
-  nome: string = ""
+  nome: string = "";
   categorias!: Categoria[];
-  modalApresentada: boolean = false;
+  modalApresentada: boolean = false; 
 
   ngOnInit(){
     this.categorias = [
       {
         id: 1,
-        nome: "Rpg"
+        nome: "RPG"
       }
     ]
   }
@@ -39,4 +35,3 @@ export class ListaCategoriaComponent {
     this.modalApresentada = true;
   }
 }
-

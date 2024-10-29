@@ -2,6 +2,7 @@
     <div class="flex justify-content-end flex-wrap mb-3">
         <p-button label="Cadastrar" (onClick)="acessarCadastro()" />
     </div>
+
     <p-table [value]="jogos" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
@@ -17,13 +18,13 @@
             <tr>
                 <td>{{ jogo.id }}</td>
                 <td>
-                    <p-image src="{{ jogo.foto }}" alt="" width="75" [preview]="true"/>
+                    <p-image src="{{jogo.foto}}" alt="{{jogo.nome}}" width="75" [preview]="true" />
                 </td>
-                <td>{{ jogo.categoria }}</td>
+                <td>{{jogo.categoria}}</td>
                 <td>{{ jogo.nome }}</td>
-                <td>{{ jogo.preco }}</td>
+                <td>{{jogo.preco}}</td>
                 <td>
-                    <p-button label="Editar" outlined="true" class="mr-3"/>
+                    <p-button label="Editar" class="mr-2" />
                     <p-button label="Apagar" severity="danger" outlined="true" />
                 </td>
             </tr>

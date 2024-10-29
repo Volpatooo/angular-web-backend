@@ -10,7 +10,7 @@ import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 
 interface Endereco{
-  uf:string,
+  uf: string,
   localidade: string,
   bairro: string,
   logradouro: string
@@ -19,14 +19,15 @@ interface Endereco{
 @Component({
   selector: 'app-cadastro-usuario',
   standalone: true,
-  imports: [FormsModule,
+  imports: [
+    FormsModule,
     InputTextModule,
-    InputMaskModule,
     PasswordModule,
     CalendarModule,
     InputMaskModule,
     PanelModule,
-    ToastModule],
+    ToastModule,
+  ],
   providers: [MessageService],
   templateUrl: './cadastro-usuario.component.html',
   styleUrl: './cadastro-usuario.component.css'
@@ -54,15 +55,13 @@ export class CadastroUsuarioComponent {
       this.messageService.add({summary: "CEP inválido", severity: "error"})
       return;
     }
-
     this.httpClient.get<Endereco>(`https://viacep.com.br/ws/${cep}/json/`)
-    .subscribe(res => {
-      this.estado = res.uf;
-      this.cidade = res.localidade;
-      this.logradouro = res.logradouro;
-      this.bairro = res.bairro;
-    })
-     // executa a requesição
+      .subscribe(res => {
+        this.estado = res.uf;
+        this.cidade = res.localidade;
+        this.logradouro = res.logradouro;
+        this.bairro = res.bairro;
+      })
   }
 
   cadastrar(){

@@ -1,5 +1,5 @@
 {
-  "name": "steam-fake-db",
+  "name": "steam-fake-ng",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

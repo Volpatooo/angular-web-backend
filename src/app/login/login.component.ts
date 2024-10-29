@@ -6,45 +6,48 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
-import { RippleModule } from 'primeng/ripple';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [InputTextModule,
-     FormsModule,
-      ButtonModule,
-       ToastModule,
-      RippleModule,
+  imports: [
+    InputTextModule,
+    FormsModule,
+    ButtonModule,
+    ToastModule,
     PasswordModule,
-  PanelModule],
+    PanelModule,
+  ],
   providers: [MessageService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  login: string = ""; // encma de value que agora e login eu coloco o mouse encima e aperto f2 e muda em todos os lugares que precisa
+  login: string = "";
   senha: string = "";
+
   constructor(
-    // Necesario para poder apresentar mensagem de feedback para o usuario
+    // Necessário para poder apresentar mensagem de feeback para o usuário
     private messageService: MessageService,
-    // necessario para poder redirecionar para outra rota
+    // Necessário para poder redirecionar para outra rota
     private router: Router,
-  ) {}
+  ) { }
 
-  enviar(){
-    if (this.login == "." && this.senha == ",") {
-      this.router.navigate(["/home"]) // quando completarmos a senha vai ser redirecionado para o home
+  enviar() {
+    // Verificar se o login e senha estão corretos
+    if (this.login == "admin" && this.senha == "batatinha") {
+      // Redirecionar para a tela da home
+      this.router.navigate(["/home"])
+    } else if (this.login == "gamer" && this.senha == "batatinha") {
+      this.router.navigate(["/grid"])
     } else {
-
-     this.messageService.add({ severity: 'error', summary: 'Erro 404#', detail: 'Login ou senha invalidos!' }); // o value e oq definimos no html do component no input
+      // Apresentar mensagem que o login/senha estão inválidos
+      this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Login e/ou Senha inválidas' });
     }
-
-    // alert("Helo World: " + this.value)
   }
 
-  redirecionarCadastrar(){
+  redirecionarCadastrar() {
     this.router.navigate(["/cadastrar"])
   }
 }

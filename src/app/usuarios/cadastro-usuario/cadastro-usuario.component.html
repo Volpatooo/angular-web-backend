@@ -1,5 +1,4 @@
-<p-toast></p-toast>
-
+<p-toast/>
 <div class="flex justify-content-center align-content-center flex-wrap" style="min-height: 100vh">
     <p-panel header="Faça seu login">
         <div class="card flex flex-column gap-3">
@@ -32,7 +31,8 @@
                 </div>
                 <div class="flex flex-column gap-2">
                     <label for="cep">CEP</label>
-                    <p-inputMask mask="99.999-999" [(ngModel)]="cep" placeholder="00.000-000" (onBlur)="buscarEndereco()"/>
+                    <p-inputMask mask="99.999-999" [(ngModel)]="cep" placeholder="00.000-000" 
+                        (onBlur)="buscarEndereco()" />
                 </div>
             </div>
             <span>Endereço: {{estado}} {{cidade}} {{bairro}} {{logradouro}}</span>
