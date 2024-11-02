@@ -1,0 +1,4 @@
+npm install
+npm install -g @angular/cli
+npm root -g
+copiar o caminho que vai aparecer ir nas variaveis de ambiente path editar e colar e dar ok
