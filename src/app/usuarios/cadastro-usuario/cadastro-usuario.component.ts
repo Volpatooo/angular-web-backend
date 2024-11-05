@@ -8,8 +8,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
+import { ClienteCadastro } from '../../models/cliente-cadastro';
+import { ClienteService } from '../../services/cliente.service';
 
-interface Endereco{
+interface Endereco {
   uf: string,
   localidade: string,
   bairro: string,
@@ -44,15 +46,17 @@ export class CadastroUsuarioComponent {
   bairro: string = "";
   logradouro: string = "";
 
-  constructor(private httpClient: HttpClient, private messageService: MessageService){
+  constructor(private httpClient: HttpClient,
+    private messageService: MessageService,
+    private clienteService: ClienteService) {
   }
 
-  buscarEndereco(){
+  buscarEndereco() {
     let cep = this.cep.replace("-", "").replace("_", "").replace(".", "")
 
-    if (cep.length != 8){
+    if (cep.length != 8) {
       this.messageService.clear();
-      this.messageService.add({summary: "CEP inválido", severity: "error"})
+      this.messageService.add({ summary: "CEP inválido", severity: "error" })
       return;
     }
     this.httpClient.get<Endereco>(`https://viacep.com.br/ws/${cep}/json/`)
@@ -64,7 +68,25 @@ export class CadastroUsuarioComponent {
       })
   }
 
-  cadastrar(){
-    this.buscarEndereco();
+  cadastrar() {
+    let clienteCadastro = new ClienteCadastro();
+    clienteCadastro.nome = this.nome;
+    clienteCadastro.cep = this.cep;
+    clienteCadastro.cpf = this.cpf;
+    clienteCadastro.dataNascimento = this.dataNascimento.toISOString().slice(0, 10);
+    clienteCadastro.email = this.email;
+    clienteCadastro.senha = this.senha;
+    clienteCadastro.username = "joia";
+
+    this.clienteService.cadastrar(clienteCadastro).subscribe({
+      next: dado => {
+        console.log(dado);
+        alert("Cliente cadastrado com sucesso");
+      },
+      error: erro => {
+        console.error(erro);
+        alert("Não foi possivel cadastrar o cliente");
+      }
+    })
   }
 }
