@@ -4,6 +4,7 @@ import { JogoGrid } from '../models/jogo-grid';
 import { JogoLista } from '../models/jogo-lista';
 import { HttpClient } from '@angular/common/http';
 import { JogoForm } from '../models/jogo-form';
+import { JogoGrafico } from '../models/jogo-grafico';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,9 @@ export class JogoService {
 
 
     return this.httpClient.post<any>("http://localhost:8000/api/jogos/", data);
+  }
+
+  obterJogoPorCategoria(): Observable<JogoGrafico[]>{
+    return this.httpClient.get<JogoGrafico[]>("http://localhost:8000api/jogos-por-categoria");
   }
 }

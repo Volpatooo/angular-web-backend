@@ -1,8 +1,0 @@
-npm install
-npm install -g @angular/cli
-npm root -g
-copiar o caminho que vai aparecer ir nas variaveis de ambiente path editar e colar e dar ok
-
-para achar erros de back-end aperta ctrl shift i depois network e ve se a requisição foi enviada
-201 foi enviada com sucesso 
-404 deu erro (se deu erro aperta na req que apareceu depois em payloud)

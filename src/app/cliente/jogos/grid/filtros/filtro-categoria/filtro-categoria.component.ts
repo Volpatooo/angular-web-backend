@@ -7,21 +7,19 @@ import { DropdownModule } from 'primeng/dropdown';
 @Component({
   selector: 'app-filtro-categoria',
   standalone: true,
-  imports: [
-    FormsModule,
-    DropdownModule],
+  imports: [FormsModule, DropdownModule],
   templateUrl: './filtro-categoria.component.html',
   styleUrl: './filtro-categoria.component.css'
 })
 export class FiltroCategoriaComponent {
-  categoriasDisponiveis!: Categoria[]; // ! motra que pode ou não estar peenchida
+  categoriasDisponiveis!: Categoria[];
   categoria!: Categoria;
 
-  constructor(private categoriaservice: CategoriaService){
-   this.categoriaservice.obterTodas().subscribe({
-      next: (categorias) =>this.categoriasDisponiveis = categorias,
+  constructor(private categoriaService: CategoriaService){
+    this.categoriaService.obterTodas().subscribe({
+      next: (categorias) => this.categoriasDisponiveis = categorias,
       error: (erro) => {
-        alert("Ocorreu um erro ao carrgear as categorias")
+        alert("Ocorreu um erro ao carregar as categorias")
         console.error(erro)
       }
     });

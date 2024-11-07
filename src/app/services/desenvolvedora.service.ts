@@ -20,7 +20,7 @@ export class DesenvolvedoraService {
       { nome: "Valve" },
       { nome: "FromSoftware" },
       { nome: "Bungie" },
-      { nome: "Rockstar Games" },
+      { nome: "Rockstar Games" }
     ];
     desenvolvedoras.sort((a, b) => a.nome.localeCompare(b.nome));
     return of(desenvolvedoras);

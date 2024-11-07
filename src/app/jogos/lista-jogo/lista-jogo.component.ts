@@ -6,7 +6,7 @@ import { TableModule } from 'primeng/table';
 import { JogoService } from '../../services/jogo.service';
 import { JogoLista } from '../../models/jogo-lista';
 
-// ng g c jogos/lista-jogo
+
 @Component({
   selector: 'app-lista-jogo',
   standalone: true,
@@ -20,7 +20,7 @@ import { JogoLista } from '../../models/jogo-lista';
 })
 export class ListaJogoComponent {
   jogos!: JogoLista[];
-  // ng g c jogos/cadastro-jogo
+
   constructor(private router: Router, private jogoService: JogoService){}
 
   ngOnInit(){
@@ -30,7 +30,7 @@ export class ListaJogoComponent {
         console.error(erro);
         alert("Não foi possível carregar a lista de jogos")
       }
-    })
+    });
   }
 
   acessarCadastro(){

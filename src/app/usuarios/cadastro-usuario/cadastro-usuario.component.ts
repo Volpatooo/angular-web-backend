@@ -10,8 +10,9 @@ import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { ClienteCadastro } from '../../models/cliente-cadastro';
 import { ClienteService } from '../../services/cliente.service';
+import { Router } from '@angular/router';
 
-interface Endereco {
+interface Endereco{
   uf: string,
   localidade: string,
   bairro: string,
@@ -45,18 +46,21 @@ export class CadastroUsuarioComponent {
   cidade: string = "";
   bairro: string = "";
   logradouro: string = "";
+  usuario: string = "";
 
-  constructor(private httpClient: HttpClient,
+  constructor(
+    private httpClient: HttpClient, 
     private messageService: MessageService,
-    private clienteService: ClienteService) {
+    private clienteService: ClienteService,
+    private router: Router){
   }
 
-  buscarEndereco() {
+  buscarEndereco(){
     let cep = this.cep.replace("-", "").replace("_", "").replace(".", "")
 
-    if (cep.length != 8) {
+    if (cep.length != 8){
       this.messageService.clear();
-      this.messageService.add({ summary: "CEP inválido", severity: "error" })
+      this.messageService.add({summary: "CEP inválido", severity: "error"})
       return;
     }
     this.httpClient.get<Endereco>(`https://viacep.com.br/ws/${cep}/json/`)
@@ -68,7 +72,7 @@ export class CadastroUsuarioComponent {
       })
   }
 
-  cadastrar() {
+  cadastrar(){
     let clienteCadastro = new ClienteCadastro();
     clienteCadastro.nome = this.nome;
     clienteCadastro.cep = this.cep;
@@ -76,16 +80,17 @@ export class CadastroUsuarioComponent {
     clienteCadastro.dataNascimento = this.dataNascimento.toISOString().slice(0, 10);
     clienteCadastro.email = this.email;
     clienteCadastro.senha = this.senha;
-    clienteCadastro.username = "joia";
+    clienteCadastro.username = this.usuario;
 
     this.clienteService.cadastrar(clienteCadastro).subscribe({
       next: dado => {
         console.log(dado);
         alert("Cliente cadastrado com sucesso");
+        this.router.navigate(["login"]);
       },
       error: erro => {
         console.error(erro);
-        alert("Não foi possivel cadastrar o cliente");
+        alert("Não foi possível cadastrar o cliente");
       }
     })
   }

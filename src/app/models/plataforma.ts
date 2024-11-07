@@ -1,3 +1,3 @@
-export interface Plataforma{
+export interface Plataforma {
     nome: string
-  }
+}

@@ -22,9 +22,8 @@ import { Plataforma } from '../../models/plataforma';
 import { CategoriaService } from '../../services/categoria.service';
 import { DesenvolvedoraService } from '../../services/desenvolvedora.service';
 import { JogoForm } from '../../models/jogo-form';
-import { JogoService } from '../../services/jogo.service';
 import { Router } from '@angular/router';
-
+import { JogoService } from '../../services/jogo.service';
 
 @Component({
   selector: 'app-cadastro-jogo',
@@ -62,65 +61,67 @@ export class CadastroJogoComponent {
     private categoriaService: CategoriaService,
     private desenvolvedoraService: DesenvolvedoraService,
     private router: Router,
-    private jogoService: JogoService
-    ){
-      this.jogoForm = { // aqui deixamos apenas as colunas de jogos que sao obrigatorias sem ? 
-        nome: "",
-        desenvolvedora: "",
-        classificacao: 0,
-        tags: [],
-        plataforma: [],
-        disponivelVenda: false
-      };
-    }
-
-    ngOnInit() {
-      this.carregarCategorias();
-      this.carregarDesenvolvedoras();
-      this.carregarPlataformas();
-    }
-  
-    carregarPlataformas() {
-      this.plataformaService.obterTodas().subscribe({
-        next: plataformas => this.plataformas = plataformas,
-        error: erro => {
-          alert("Ocorreu um erro ao carregar as plataformas")
-          console.error(erro)
-        }
-      })
-    }
-  
-    carregarDesenvolvedoras() {
-      this.desenvolvedoraService.obterTodas().subscribe({
-        next: desenvolvedoras => this.desenvolvedoras = desenvolvedoras,
-        error: erro => {
-          alert("Ocorreu um erro ao carregar as desenvolvedoras")
-          console.error(erro)
-        }
-      })
-    }
-  
-    carregarCategorias() {
-      this.categoriaService.obterTodas().subscribe({
-        next: categorias => this.categorias = categorias,
-        error: erro => {
-          alert("Ocorreu um erro ao carregar as categorias")
-          console.error(erro)
-        }
-      })
-    }
-    salvar() {
-      this.jogoService.cadastrar(this.jogoForm).subscribe({
-        next: response =>{
-            this.router.navigate(["/jogos"])
-        },
-        error: erro => {
-          console.error(erro);
-          alert("Ocorre um erro inesperado");
-        }
-      })
-    }
-    armazenarFoto(event: FileUploadEvent) {
-      this.jogoForm.imagem = event.files[0];
-    }
+    private jogoService: JogoService,
+  ) {
+    this.jogoForm = {
+      nome: "",
+      desenvolvedora: "",
+      classificacao: 0,
+      tags: [],
+      plataforma: [],
+      disponivelVenda: false
+    };
   }
+
+  ngOnInit() {
+    this.carregarCategorias();
+    this.carregarDesenvolvedoras();
+    this.carregarPlataformas();
+  }
+
+  carregarPlataformas() {
+    this.plataformaService.obterTodas().subscribe({
+      next: plataformas => this.plataformas = plataformas,
+      error: erro => {
+        alert("Ocorreu um erro ao carregar as plataformas")
+        console.error(erro)
+      }
+    })
+  }
+
+  carregarDesenvolvedoras() {
+    this.desenvolvedoraService.obterTodas().subscribe({
+      next: desenvolvedoras => this.desenvolvedoras = desenvolvedoras,
+      error: erro => {
+        alert("Ocorreu um erro ao carregar as desenvolvedoras")
+        console.error(erro)
+      }
+    })
+  }
+
+  carregarCategorias() {
+    this.categoriaService.obterTodas().subscribe({
+      next: categorias => this.categorias = categorias,
+      error: erro => {
+        alert("Ocorreu um erro ao carregar as categorias")
+        console.error(erro)
+      }
+    })
+  }
+
+  salvar() {
+    this.jogoService.cadastrar(this.jogoForm).subscribe({
+      next: response => {
+        this.router.navigate(["/jogos"])
+      },
+      error: erro => {
+        console.error(erro);
+        alert("Ocorre um erro inesperado");
+      }
+    })
+  }
+
+  armazenarFoto(event: FileUploadEvent) {
+    this.jogoForm.imagem = event.files[0];
+  }
+}

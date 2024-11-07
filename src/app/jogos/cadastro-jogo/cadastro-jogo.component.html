@@ -62,7 +62,7 @@
                         <p-checkbox 
                             [(ngModel)]="jogoForm.plataforma" 
                             label="{{plataformaDado.nome}}"
-                            value="{{plataformaDado.nome}}"
+                            value="{{plataformaDado.nome}}" 
                             inputId="plataforma-{{plataformaDado.nome}}" />
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                         chooseIcon="pi pi-upload"
                         name="imagem" 
                         url="https://www.primefaces.org/cdn/api/upload.php" 
-                        accept="image/*" 
+                        accept="image/*"
                         auto="true"
                         (onUpload)="armazenarFoto($event)"
                         maxFileSize="1000000" />
@@ -119,8 +119,10 @@
             </div>
 
             <div class="flex justify-content-end flex-wrap mb-3">
-                <p-button label="Salvar" severity="success" (onClick)="salvar()"/>
+                <p-button label="Salvar" severity="success" (onClick)="salvar()" />
             </div>
         </div>
     </p-panel>
 </div>
+
+Imagem: {{jogoForm.imagem}}

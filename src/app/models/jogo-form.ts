@@ -1,6 +1,6 @@
 export interface JogoForm {
     nome: string;
-    preco?: number; // ? indica que pod eestra vazio ou nao
+    preco?: number;
     desenvolvedora: string;
     dataLancamento?: Date;
     classificacao: number;

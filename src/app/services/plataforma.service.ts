@@ -9,15 +9,15 @@ export class PlataformaService {
 
   constructor() { }
 
-  obterTodas(): Observable<Plataforma[]>{ // vai retornar uma lista de plataformas e uma lista porcausa do []
+  obterTodas(): Observable<Plataforma[]>{
     let plataformas = [
-      {nome: "Mobile"},
       {nome: "Nintendo"},
-      {nome: "Pc"},
       {nome: "PlayStation"},
       {nome: "Xbox"},
+      {nome: "PC"},
+      {nome: "Mobile"},
     ]
-    plataformas.sort((a, b) => a.nome.localeCompare(b.nome)); // usado para motrar em ordem alfabetica
+    plataformas.sort((a, b) => a.nome.localeCompare(b.nome));
     return of(plataformas);
-  } 
+  }
 }
